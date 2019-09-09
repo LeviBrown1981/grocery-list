@@ -8,13 +8,22 @@ class GrocerylistForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    console.log(this.state.name)
+    this.props.addItem(this.state.name);
+    this.setState({ name: "" })
   }
 
   render() {
+    const { name } = this.state;
+
     return (
-      <form>
-        <input required placeholder="Add An Item" />
+      <form onSubmit={this.handleSubmit}>
+        <input
+          value={name}
+          name="name"
+          noChange={this.handleChange}
+         required
+          placeholder="Add An Item" 
+          />
       </form>
     )
   }
